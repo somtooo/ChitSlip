@@ -2,7 +2,7 @@
 <a href="#"><img alt="ChitSlip" src="https://github.com/BeatAllTech/ChitSlip/blob/main/ChitSlipDark.PNG"  /></a>
 <br/>
 <strong>Stephen Grider Ticketing App Written in Go </strong>
-<h1>ChitSlip Go Monorepo</h1>
+<h1>ChitSlip in Go</h1>
 </div>
 <p align="center">
 <a href="https://circleci.com/gh/stellar/go"><img alt="Build Status" src="https://circleci.com/gh/stellar/go.svg?style=shield" /></a>
