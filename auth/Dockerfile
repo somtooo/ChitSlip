@@ -1,13 +1,14 @@
 FROM golang:1.16.4
 
-WORKDIR /go/src/app
+WORKDIR /go/src/github.com/BeatAllTech/ChitSlip/auth
 COPY go.mod .
 COPY go.sum .
-
 RUN go mod download
 RUN go get github.com/githubnemo/CompileDaemon
 
-
 COPY . .
 
-CMD [ "CompileDaemon", "-command=\"go run index.go\"" ]
+ENTRYPOINT CompileDaemon \
+    --build="go build src/index.go" \
+    --command="go run src/index.go"
+
