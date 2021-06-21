@@ -8,7 +8,9 @@ RUN go get github.com/githubnemo/CompileDaemon
 
 COPY . .
 
+
 ENTRYPOINT CompileDaemon \
+    --color="true" \
     --build="go build src/index.go" \
     --command="go run src/index.go"
 

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  name: auth-srv
 spec:
   selector:
     matchLabels:
@@ -14,6 +14,7 @@ spec:
       containers:
       - name: auth
         image: csomtoo/auth
+        imagePullPolicy: Never
 
 ---
 apiVersion: v1
@@ -28,5 +29,3 @@ spec:
       protocol: TCP
       port: 3000
       targetPort: 3000
-
-
