@@ -1,23 +1,26 @@
 package routes
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 
+	"github.com/BeatAllTech/ChitSlip/auth/src/errors"
 	"github.com/BeatAllTech/ChitSlip/auth/src/validation"
 )
 
 // HandleSignUp Handles SignUp
 func HandleSignUp(res http.ResponseWriter, req *http.Request) {
-	emailErr := validation.ValidateEmail(req.FormValue("email"), "Email must be valid")
-	passErr := validation.ValidatePassword(req.FormValue("password"), 4, 20, "Password must be between 4 and 20 char")
-	s := [1]string{string(emailErr) + "," + "\n" + string(passErr)}
+	validate := new(validation.Validate)
+	validate.ValidateEmail(req.FormValue("email"), "Email must be valid")
+	validate.ValidatePassword(req.FormValue("password"), 4, 20, "Password must be between 4 and 20 char")
 
-	if (len(emailErr) > 1) || (len(passErr) > 1) {
-		res.WriteHeader(http.StatusBadRequest)
-		fmt.Fprint(res, s)
+	if validate.ValidationResult != nil {
+		errors.HttpError(res, validate, http.StatusBadRequest)
 		return
 	}
 
-	fmt.Fprint(res, s)
+	res.WriteHeader(http.StatusOK)
+	data, _ := json.Marshal("{}")
+	fmt.Fprint(res, string(data))
 }
