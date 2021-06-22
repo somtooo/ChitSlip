@@ -16,7 +16,7 @@ func HandleSignUp(res http.ResponseWriter, req *http.Request) {
 	validate.ValidatePassword(req.FormValue("password"), 4, 20, "Password must be between 4 and 20 char")
 
 	if validate.ValidationResult != nil {
-		errors.HttpError(res, validate, http.StatusBadRequest)
+		errors.HTTPError(res, validate, http.StatusBadRequest)
 		return
 	}
 

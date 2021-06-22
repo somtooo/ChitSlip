@@ -11,9 +11,7 @@ type format struct {
 	Location string
 }
 
-//ValidationResult
-
-//Validate is a yeah
+//Validate type for running validations on data in incoming requests.
 type Validate struct {
 	ValidationResult []format
 }
