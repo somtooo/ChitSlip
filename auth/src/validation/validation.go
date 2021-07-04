@@ -36,30 +36,52 @@ func (e *Validate) ValidateEmail(email string, message string) {
 
 }
 
-//ValidatePassword validates password
-func (e *Validate) ValidatePassword(password string, min int, max int, message string) {
+//ValidatePasswordLength validates password
+func (e *Validate) ValidatePasswordLength(password string, min int, max int, message string) {
 	f := format{Value: password, Msg: message, Param: "password", Location: "body"}
 	if !(min < len(password) && max > len(password)) {
 		e.ValidationResult = append(e.ValidationResult, f)
-		return
+
 	}
 
 }
 
-func (e *Validate) SerializeErrors() []struct {
-	Message string
-	Field   string `json:"Field,omitempty" bson:"Field,omitempty"`
+//IsPassword does ..
+func (e *Validate) IsPassword(password string, message string) {
+	f := format{Value: password, Msg: message, Param: "password", Location: "body"}
+	if password == "" {
+		e.ValidationResult = append(e.ValidationResult, f)
+	}
+}
+
+//SerializeErrors does...
+func (e *Validate) SerializeErrors() struct {
+	Errors []struct {
+		Message string `json:"message"`
+		Field   string `json:"field,omitempty"`
+	} `json:"errors"`
 } {
 	serialized := make([]struct {
-		Message string
+		Message string `json:"message"`
 		Field   string `json:"Field,omitempty" bson:"Field,omitempty"`
 	}, len(e.ValidationResult))
 	for i, v := range e.ValidationResult {
 		serialized[i] = struct {
-			Message string
+			Message string `json:"message"`
 			Field   string `json:"Field,omitempty" bson:"Field,omitempty"`
 		}{v.Msg, v.Param}
 	}
+	d := struct {
+		Errors []struct {
+			Message string `json:"message"`
+			Field   string `json:"field,omitempty"`
+		} `json:"errors"`
+	}{}
 
-	return serialized
+	d.Errors = []struct {
+		Message string "json:\"message\""
+		Field   string "json:\"field,omitempty\""
+	}(serialized)
+
+	return d
 }

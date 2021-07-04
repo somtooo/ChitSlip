@@ -3,21 +3,28 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
+	"github.com/BeatAllTech/ChitSlip/auth/src/db"
 	"github.com/BeatAllTech/ChitSlip/auth/src/errors"
+	"github.com/BeatAllTech/ChitSlip/auth/src/middleware"
 	"github.com/BeatAllTech/ChitSlip/auth/src/routes"
 )
 
 func main() {
-	http.HandleFunc("/api/users/currentuser", routes.HandleCurrentUser)
+	if os.Getenv("JWT_KEY") == "" {
+		panic("JWT_KEY must be definied")
+	}
+	http.HandleFunc("/api/users/currentuser", middleware.IsLoggedIn(http.HandlerFunc(routes.HandleCurrentUser)))
 	http.HandleFunc("/api/users/signup", routes.HandleSignUp)
 	http.HandleFunc("/api/users/signout", routes.HandleSignOut)
 	http.HandleFunc("/api/users/signin", routes.HandleSignIn)
 	http.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
-		var notFound errors.NotFoundError = "No link Found"
+		var notFound errors.BadRequestError = "No link Found"
 		errors.HTTPError(res, notFound, http.StatusBadRequest)
 	})
 
+	db.ConnectDb()
 	fmt.Println("Listening on port 3000!")
 	http.ListenAndServe(":3000", nil)
 
