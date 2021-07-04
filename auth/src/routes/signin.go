@@ -11,7 +11,7 @@ import (
 
 	"github.com/BeatAllTech/ChitSlip/auth/src/db"
 	"github.com/BeatAllTech/ChitSlip/auth/src/db/models"
-	"github.com/BeatAllTech/ChitSlip/auth/src/errors"
+	"github.com/BeatAllTech/ChitSlip/auth/src/middlewares/errors"
 	"github.com/BeatAllTech/ChitSlip/auth/src/validation"
 	"github.com/dgrijalva/jwt-go"
 	"go.mongodb.org/mongo-driver/bson"
