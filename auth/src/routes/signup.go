@@ -23,8 +23,14 @@ func HandleSignUp(res http.ResponseWriter, req *http.Request) {
 	validate := new(validation.Validate)
 	user := db.Client.Database("user").Collection("User")
 	var schema models.UserSchema
+	req.ParseForm()
+
+	for key, value := range req.Form {
+		fmt.Printf("%s = %s\n", key, value)
+	}
 
 	validate.ValidateEmail(req.FormValue("email"), "Email must be valid")
+	fmt.Println("this is email:", req.Form["email"])
 	validate.ValidatePasswordLength(req.FormValue("password"), 4, 20, "Password must be between 4 and 20 char")
 
 	if validate.ValidationResult != nil {

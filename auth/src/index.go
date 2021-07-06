@@ -6,8 +6,8 @@ import (
 	"os"
 
 	"github.com/BeatAllTech/ChitSlip/auth/src/db"
-	"github.com/BeatAllTech/ChitSlip/auth/src/errors"
 	"github.com/BeatAllTech/ChitSlip/auth/src/middlewares/currentuser"
+	"github.com/BeatAllTech/ChitSlip/auth/src/middlewares/errors"
 	"github.com/BeatAllTech/ChitSlip/auth/src/routes"
 )
 

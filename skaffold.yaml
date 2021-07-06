@@ -15,5 +15,5 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.go'
+          - src: 'auth/**/*.go'
             dest: .
