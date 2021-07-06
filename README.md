@@ -10,7 +10,7 @@
 <a href="https://goreportcard.com/report/github.com/stellar/go"><img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/stellar/go" /></a>
 </p>
 
-This repo contains the various microservices that makes up Stephen Grider Ticketing App which was originally developed with typescript but now Re-Written in Go. 
+This repo contains the various microservices that makes up Stephen Grider Ticketing App which was originally developed with typescript but now  in Go. 
 
 Using this Repo beginners to the Go programming language can learn how to develop microserice applications in Go.
 
