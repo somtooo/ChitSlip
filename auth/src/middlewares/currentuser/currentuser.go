@@ -38,10 +38,16 @@ func CurrentUser(handler http.Handler) http.Handler {
 			return []byte(os.Getenv("JWT_KEY")), nil
 		})
 
-		if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-			ctx = context.WithValue(context.Background(), Key, user{CurrentUser: claims})
+		if token == nil {
+			fmt.Println("Token is null")
 			req = req.Clone(ctx)
+			handler.ServeHTTP(res, req)
+			return
+		}
 
+		if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+			ctx := context.WithValue(context.Background(), Key, user{CurrentUser: claims})
+			req = req.Clone(ctx)
 			handler.ServeHTTP(res, req)
 		} else {
 			fmt.Println("Token verify Error: ", err)

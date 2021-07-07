@@ -17,3 +17,11 @@ build:
         manual:
           - src: 'auth/**/*.go'
             dest: .
+    - image: csomtoo/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
