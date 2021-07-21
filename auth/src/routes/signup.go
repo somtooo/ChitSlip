@@ -11,10 +11,10 @@ import (
 
 	"github.com/BeatAllTech/ChitSlip/auth/src/db"
 	"github.com/BeatAllTech/ChitSlip/auth/src/db/models"
-	"github.com/BeatAllTech/ChitSlip/auth/src/middlewares/errors"
-	"github.com/BeatAllTech/ChitSlip/auth/src/validation"
+	"github.com/somtooo/Chit-Slip-Lib/commons/errors"
+	"github.com/somtooo/Chit-Slip-Lib/commons/validation"
 
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt"
 	"go.mongodb.org/mongo-driver/bson"
 )
 

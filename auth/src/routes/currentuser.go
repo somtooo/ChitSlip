@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/BeatAllTech/ChitSlip/auth/src/middlewares/currentuser"
+	"github.com/somtooo/Chit-Slip-Lib/commons/middlewares/currentuser"
 )
 
 //HandleCurrentUser handles what happens when the current user visits page

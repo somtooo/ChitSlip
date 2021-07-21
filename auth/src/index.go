@@ -6,9 +6,9 @@ import (
 	"os"
 
 	"github.com/BeatAllTech/ChitSlip/auth/src/db"
-	"github.com/BeatAllTech/ChitSlip/auth/src/middlewares/currentuser"
-	"github.com/BeatAllTech/ChitSlip/auth/src/middlewares/errors"
 	"github.com/BeatAllTech/ChitSlip/auth/src/routes"
+	"github.com/somtooo/Chit-Slip-Lib/commons/errors"
+	"github.com/somtooo/Chit-Slip-Lib/commons/middlewares/currentuser"
 )
 
 func main() {
