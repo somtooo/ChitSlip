@@ -25,3 +25,12 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
+    - image: csomtoo/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'tickets/**/*.go'
+            dest: .
+
